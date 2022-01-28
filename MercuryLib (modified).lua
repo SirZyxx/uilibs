@@ -1744,18 +1744,6 @@ function Library:button(options)
 		TextXAlignment = Enum.TextXAlignment.Left
 	})
 
-	if options.Description then
-		local description = buttonContainer:object("TextLabel", {
-			BackgroundTransparency = 1,
-			Position = UDim2.fromOffset(10, 27),
-			Size = UDim2.new(0.5, -10, 0, 20),
-			Text = options.Description,
-			TextSize = 18,
-			Theme = {TextColor3 = "WeakText"},
-			TextXAlignment = Enum.TextXAlignment.Left
-		})
-	end
-
 	local icon = buttonContainer:object("ImageLabel", {
 		AnchorPoint = Vector2.new(1, 0.5),
 		BackgroundTransparency = 1,
