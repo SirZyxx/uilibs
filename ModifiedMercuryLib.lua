@@ -1805,7 +1805,7 @@ function Library:label(options)
 		BackgroundTransparency = 1,
 		Position = UDim2.new(1, -11, 0.5, 0),
 		Size = UDim2.fromOffset(26, 26),
-		Image = "rbxassetid://8498776661",
+		Image = nil,
 		Theme = {ImageColor3 = "Tertiary"}
 	})
 
