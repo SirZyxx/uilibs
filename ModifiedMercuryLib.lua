@@ -2762,7 +2762,7 @@ function Library:credit(options)
 				Size = UDim2.fromOffset(24, 24),
 				Position = UDim2.new(1, -8, 1, -8),
 				BackgroundColor3 = Color3.fromRGB(88, 101, 242)
-			}):round(5):tooltip("copy discord")
+			}):round(5):tooltip("Copy discord")
 			local discord = discordContainer:object("Frame", {
 				Size = UDim2.new(1, -6, 1, -6),
 				Centered = true,
@@ -2820,7 +2820,7 @@ function Library:credit(options)
 				Size = UDim2.fromOffset(24, 24),
 				Position = UDim2.new(1, -40, 1, -8),
 				Theme = {BackgroundColor3 = {"Main", 10}}
-			}):round(5):tooltip("copy v3rm")
+			}):round(5):tooltip("Copy v3rm")
 			local v3rmillion = v3rmillionContainer:object("ImageLabel", {
 				Image = "http://www.roblox.com/asset/?id=8594086769",
 				Size = UDim2.new(1, -4, 1, -4),
