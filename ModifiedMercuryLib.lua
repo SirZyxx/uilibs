@@ -1727,38 +1727,79 @@ function Library:button(options)
 			TextXAlignment = Enum.TextXAlignment.Left
 		})
 	end
-  
-  function Library:label(options)
-	options = self:set_defaults({
-		Name = "Label",   
-		Text = "Text"
-	}, options)
-
-	local text = self.container:object("TextLabel", {
-		BackgroundTransparency = 1,
-		Position = UDim2.fromOffset(10, (options.Description and 5) or 0),
-		Size = (options.Description and UDim2.new(0.5, -10, 0, 22)) or UDim2.new(0.5, -10, 1, 0),
-		Text = options.Name,
-		TextSize = 22,
-		Theme = {TextColor3 = "StrongText"},
-		TextXAlignment = Enum.TextXAlignment.Left
-	})
 
 	local icon = buttonContainer:object("ImageLabel", {
 		AnchorPoint = Vector2.new(1, 0.5),
 		BackgroundTransparency = 1,
 		Position = UDim2.new(1, -11, 0.5, 0),
 		Size = UDim2.fromOffset(26, 26),
-		Image = "",
+		Image = "rbxassetid://8498776661",
 		Theme = {ImageColor3 = "Tertiary"}
 	})
-    
+
+	do
+		local hovered = false
+		local down = false
+
+		buttonContainer.MouseEnter:connect(function()
+			hovered = true
+			buttonContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 10)}
+		end)
+
+		buttonContainer.MouseLeave:connect(function()
+			hovered = false
+			if not down then
+				buttonContainer:tween{BackgroundColor3 = Library.CurrentTheme.Secondary}
+			end
+		end)
+
+		buttonContainer.MouseButton1Down:connect(function()
+			buttonContainer:tween{BackgroundColor3 = self:lighten(Library.CurrentTheme.Secondary, 20)}
+		end)
+
+		UserInputService.InputEnded:connect(function(key)
+			if key.UserInputType == Enum.UserInputType.MouseButton1 then
+				buttonContainer:tween{BackgroundColor3 = (hovered and self:lighten(Library.CurrentTheme.Secondary)) or Library.CurrentTheme.Secondary}
+			end
+		end)
+
+		buttonContainer.MouseButton1Click:connect(function()
+			options.Callback()
+		end)
+	end
 	self:_resize_tab()
 
 	local methods = {}
 
-	function methods:UpdateLabel(Text)
-		options.Text = Text
+	function methods:Fire()
+		options.Callback()
+	end
+
+	return methods
+end
+
+function Library:label(options)
+	options = self:set_defaults({
+		Name = "Label",
+		Text = "TestNaem"
+	}, options)
+
+	local text = self.container:object("TextLabel", {
+		BackgroundTransparency = 1,
+		Position = UDim2.fromOffset(10, 0),
+		Size = UDim2.new(0.5, -10, 1, 0,
+		Text = options.Name,
+		TextSize = 22,
+		Theme = {TextColor3 = "StrongText"},
+		TextXAlignment = Enum.TextXAlignment.Left
+	})
+		
+	self:_resize_tab()
+
+	local methods = {}
+
+	function methods:UpdateLabel(UpdatedText)
+		options.Text = UpdatedText
 	end
 
 	return methods
