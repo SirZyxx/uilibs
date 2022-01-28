@@ -1780,7 +1780,6 @@ end
 
 function Library:label(options)
 	options = self:set_defaults({
-		Name = "Button",
 		Text = "Text"
 	}, options)
 
@@ -1791,8 +1790,8 @@ function Library:label(options)
 
 	local text = buttonContainer:object("TextLabel", {
 		BackgroundTransparency = 1,
-		Position = UDim2.fromOffset(10, (options.Description and 5) or 0),
-		Size = (options.Description and UDim2.new(0.5, -10, 0, 22)) or UDim2.new(0.5, -10, 1, 0),
+		Position = UDim2.fromOffset(10, 0),
+		Size = UDim2.new(0.5, -10, 1, 0),
 		Text = options.Text,
 		TextSize = 22,
 		Theme = {TextColor3 = "StrongText"},
