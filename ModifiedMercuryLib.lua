@@ -1778,6 +1778,34 @@ function Library:button(options)
 	return methods
 end
 
+function Library:label(options)
+	options = self:set_defaults({
+		Name = "Label",
+		Text = "Textt"
+	}, options)
+
+	local text = self.container:object("TextLabel", {
+		BackgroundTransparency = 1,
+		Position = UDim2.fromOffset(10, (options.Description and 5) or 0),
+		Size = (options.Description and UDim2.new(0.5, -10, 0, 22)) or UDim2.new(0.5, -10, 1, 0),
+		Text = options.Text,
+		TextSize = 22,
+		Theme = {TextColor3 = "StrongText"},
+		TextXAlignment = Enum.TextXAlignment.Left
+	})
+
+	
+	self:_resize_tab()
+
+	local methods = {}
+
+	function methods:UpdateLabel(UpdatedText)
+		options.Text = UpdatedText
+	end
+
+	return methods
+end
+
 function Library:color_picker(options)
 	options = self:set_defaults({
 		Name = "Color Picker",
