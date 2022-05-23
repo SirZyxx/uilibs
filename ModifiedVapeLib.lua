@@ -486,7 +486,8 @@ function lib:Window(text, preset, closebind)
 
             Button.MouseButton1Click:Connect(
                 function()
-                    pcall(callback)
+                    local _, err = pcall(callback)
+                    if err then print(err) end
                 end
             )
 
